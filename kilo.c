@@ -1,6 +1,11 @@
 #include <unistd.h>
 #include <termios.h>
 
+struct termois orig_termois;
+
+void disableRawMode() {
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termois);
+}
 
 void enableRawMode() {
     struct termios raw;
